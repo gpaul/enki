@@ -7,45 +7,29 @@
 <head>
   <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
   <title><%= yield(:page_title) || h(config[:title]) %></title>
-  <%= stylesheet_link_tag 'application' %>
+  <%= stylesheet_link_tag 'blueprint/screen', 'application' %>
   <%= javascript_include_tag 'jquery' %>
   <%= open_id_delegation_link_tags(h(config[:open_id_delegation, :server]), h(config[:open_id_delegation, :delegate])) if config[:open_id_delegation] %>
   <%= yield(:head) %>
 </head>
 <body>
-  <div id="page_container">
-    <h1 id="page_heading"><a href="<%= root_url %>"><%=h config[:title] %></a></h1>
-
-    <div id="main">
-      <%= yield %>
-    </div>
-
-    <div id="navigation">
-      <h2>Pages</h2>
-      <ul>
-        <% page_links_for_navigation.each do |link| -%>
-          <li><%= link_to(h(link.name), link.url) %></li>
-        <% end -%>
-      </ul>
-      <% unless category_links_for_navigation.empty? -%>
-        <h2>Categories</h2>
-        <ul>
-          <% category_links_for_navigation.each do |link| -%>
-            <li><%= link_to(h(link.name), link.url) %></li>
-          <% end -%>
-        </ul>
-      <% end -%>
-      <form method="get" id="sform" action="http://www.google.com/search">
-        <div>
-          <h2><label for="q">Search</label></h2>
-
-          <input type="text" id="q" value="" name="q" />
-          <input type="hidden" name="sitesearch" value="<%=h config[:url] %>" />
+    <div class="container" id="main-content">
+      <div id="header" class="container">
+        <div id="logo" class="span-3">
+          <%= image_tag "logo.png" %>
         </div>
-      </form>
+        <div id="heading" class="span-16">
+          <h1><a href="/">Rails.co.za</a></h1>
+          <p>Musings by the Pauls</p>
+        </div>
+        <div id="controls" class="span-5 last">
+          <a href="/pages/about" title="About">About</a> | <a href="/pages/contact" title="Contact">Contact</a>
+        </div>
+      </div>
+
+      <div id="page" class="container">
+        <%= yield %>
+      </div>
     </div>
 
-    <div id="footer"><%=h config[:title] %> &#169; <%=h config[:author, :name] %>. Valid <a href="http://validator.w3.org/check?uri=referer">XHTML</a> and <%= link_to "ATOM", "http://feedvalidator.org/check.cgi?url=#{h(config[:url])}/posts.atom" %>. Powered by <a href="http://www.enkiblog.com" title="A Ruby on Rails blogging app for the fashionable developer">Enki</a>.</div>
-  </div>
-</body>
-</html>
+</body></html>
