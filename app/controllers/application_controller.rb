@@ -12,6 +12,8 @@ class ApplicationController < ActionController::Base
   # Uncomment the :secret if you're not using the cookie session store
 #  protect_from_forgery :secret => 'a6a9e417376364b61645d469f04ac8cf'
 
+  filter_parameter_logging :password
+
   protected
 
   def set_content_type
