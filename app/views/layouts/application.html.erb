@@ -23,7 +23,10 @@
           <p>Musings by the Pauls</p>
         </div>
         <div id="controls" class="span-5 last">
-          <a href="/pages/about" title="About">About</a> | <a href="/pages/contact" title="Contact">Contact</a>
+          <%= link_to_unless_current "Resources", "/pages/resources" %> &bull;
+          <%= link_to_unless_current "Blog", "/" %> &bull;
+          <%= link_to_unless_current "About", "/pages/about" %> &bull;
+          <%= link_to_unless_current "Contact", "/pages/contact" %>
         </div>
       </div>
 
