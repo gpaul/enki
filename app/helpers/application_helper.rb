@@ -18,4 +18,11 @@ module ApplicationHelper
       'base'   => error.last
     }[error.first]
   end
+
+  def active_link_to(name, url, opts={})
+    opts[:class] ||= ""
+    opts[:class] << " active" if request.request_uri == url
+
+    link_to(name, url, opts)
+  end
 end
