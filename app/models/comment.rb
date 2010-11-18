@@ -1,6 +1,9 @@
 class Comment < ActiveRecord::Base
   DEFAULT_LIMIT = 15
 
+  cattr_reader :per_page
+  @@per_page = 10
+
   attr_accessor         :openid_error
   attr_accessor         :openid_valid
 
